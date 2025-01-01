@@ -256,6 +256,92 @@
             padding: 20px;
             color: #666;
         }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border: 2px solid #9c6ade;
+            background: white;
+            color: #9c6ade;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-switcher:hover {
+            background: #9c6ade;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .disclaimer-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards 0.8s;
+        }
+
+        .disclaimer-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .disclaimer-list {
+            list-style-position: outside;
+            padding-left: 1.2rem;
+        }
+
+        .disclaimer-list li {
+            margin-bottom: 1.5rem;
+        }
+
+        .disclaimer-list h3 {
+            display: inline-block;
+            color: #000;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .disclaimer-list p {
+            margin-left: 0;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        @media (max-width: 768px) {
+            .disclaimer-container {
+                margin: 15px;
+                padding: 15px;
+            }
+
+            .disclaimer-title {
+                font-size: 1.5rem;
+            }
+
+            .disclaimer-list h3 {
+                font-size: 1.1rem;
+            }
+
+            .disclaimer-list p {
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -292,7 +378,166 @@
         <div class="pagination" id="pagination"></div>
     </div>
 
+    <div class="disclaimer-container">
+        <h2 class="disclaimer-title">Disclaimer</h2>
+        <ol class="disclaimer-list">
+            <li>
+                <h3>Purpose of the Website:</h3>
+                <p>This website is created solely for public assistance as a directory for the book stalls at the fair. It is designed to help visitors easily navigate the event and discover participating stalls.</p>
+            </li>
+            <li>
+                <h3>Data Source:</h3>
+                <p>The stall information is sourced from the organizer's official website, Papazi. The data is used purely for informational purposes and does not have any commercial intent.</p>
+            </li>
+            <li>
+                <h3>Commitment to Helping Visitors:</h3>
+                <p>Our goal is to provide a convenient, user-friendly guide to enhance the experience of attendees at the book fair. This platform is built with the sole intention of supporting the public by making stall details easily accessible.</p>
+            </li>
+            <li>
+                <h3>Website Duration</h3>
+                <p>Please note that this website will be deleted after the book fair concludes, as it serves a temporary purpose specific to the event duration.</p>
+            </li>
+        </ol>
+    </div>
+
     <script>
+        let currentLanguage = 'en';
+        const translations = {
+            en: {
+                subtitle: "Stalls List",
+                title: "Chennai Book Fair 2025",
+                description: "Explore the Chennai Book Fair 2025 with ease! Find your favorite publishers and authors quickly by searching for their names or stall numbers.",
+                searchPlaceholder: "Search by publisher name, stall number, or row...",
+                tableHeaders: {
+                    publisherName: "Publisher Name",
+                    stallNumber: "Stall Number(s)",
+                    rowLocation: "Row Location",
+                    side: "Side"
+                },
+                loading: "Loading data...",
+                noResults: "No matching results found",
+                pagination: {
+                    previous: "Previous",
+                    next: "Next",
+                    go: "Go",
+                    page: "Page",
+                    of: "of"
+                },
+                disclaimer: {
+                    title: "Disclaimer",
+                    purpose: {
+                        title: "Purpose of the Website",
+                        content: "This website is created solely for public assistance as a directory for the book stalls at the fair. It is designed to help visitors easily navigate the event and discover participating stalls."
+                    },
+                    dataSource: {
+                        title: "Data Source",
+                        content: "The stall information is sourced from the organizer's official website, Papazi. The data is used purely for informational purposes and does not have any commercial intent."
+                    },
+                    commitment: {
+                        title: "Commitment to Helping Visitors",
+                        content: "Our goal is to provide a convenient, user-friendly guide to enhance the experience of attendees at the book fair. This platform is built with the sole intention of supporting the public by making stall details easily accessible."
+                    },
+                    webDuration: {
+                        title: "Website Duration",
+                        content: "Please note that this website will be deleted after the book fair concludes, as it serves a temporary purpose specific to the event duration."
+                    }
+                }
+            },
+            ta: {
+                subtitle: "கடைகளின் பட்டியல்",
+                title: "சென்னை புத்தக திருவிழா 2025",
+                description: "சென்னை புத்தக திருவிழா 2025ஐ எளிதாக ஆராயுங்கள்! உங்களுக்கு பிடித்த பதிப்பகங்கள் மற்றும் எழுத்தாளர்களை அவர்களின் பெயர்கள் அல்லது கடை எண்கள் மூலம் விரைவாகக் கண்டறியவும்.",
+                searchPlaceholder: "பதிப்பக பெயர், கடை எண் அல்லது வரிசை மூலம் தேடுங்கள்...",
+                tableHeaders: {
+                    publisherName: "பதிப்பக பெயர்",
+                    stallNumber: "கடை எண்(கள்)",
+                    rowLocation: "வரிசை இடம்",
+                    side: "பக்கம்"
+                },
+                loading: "தரவு ஏற்றப்படுகிறது...",
+                noResults: "பொருந்தக்கூடிய முடிவுகள் எதுவும் கிடைக்கவில்லை",
+                pagination: {
+                    previous: "முந்தைய",
+                    next: "அடுத்து",
+                    go: "செல்",
+                    page: "பக்கம்",
+                    of: "இல்"
+                },
+                disclaimer: {
+                    title: "பொறுப்புத் துறப்பு",
+                    purpose: {
+                        title: "வலைத்தளத்தின் நோக்கம்",
+                        content: "இந்த வலைத்தளம் புத்தகக் கண்காட்சியில் உள்ள கடைகளுக்கான வழிகாட்டியாக பொதுமக்களின் உதவிக்காக மட்டுமே உருவாக்கப்பட்டுள்ளது. பார்வையாளர்கள் நிகழ்வை எளிதாக வழிநடத்தவும், பங்கேற்கும் கடைகளைக் கண்டறியவும் இது வடிவமைக்கப்பட்டுள்ளது."
+                    },
+                    dataSource: {
+                        title: "தரவு மூலம்",
+                        content: "கடை தகவல்கள் அமைப்பாளரின் அதிகாரப்பூர்வ வலைத்தளமான பபாசியில் இருந்து பெறப்படுகின்றன. தரவு முற்றிலும் தகவல் நோக்கங்களுக்காக மட்டுமே பயன்படுத்தப்படுகிறது மற்றும் எந்த வணிக நோக்கமும் இல்லை."
+                    },
+                    commitment: {
+                        title: "பார்வையாளர்களுக்கு உதவும் உறுதிப்பாடு",
+                        content: "புத்தகக் கண்காட்சியில் பங்கேற்பாளர்களின் அனுபவத்தை மேம்படுத்த வசதியான, பயனர் நட்பு வழிகாட்டியை வழங்குவதே எங்கள் இலக்கு. கடை விவரங்களை எளிதாக அணுகக்கூடியதாக மாற்றுவதன் மூலம் பொதுமக்களுக்கு ஆதரவளிப்பதே இந்த தளத்தின் ஒரே நோக்கம்."
+                    },
+                    webDuration: {
+                        title: "வலைத்தள காலம்",
+                        content: "புத்தகக் கண்காட்சி முடிவடைந்த பிறகு இந்த வலைத்தளம் நீக்கப்படும் என்பதை கவனத்தில் கொள்ளவும், ஏனெனில் இது நிகழ்வின் கால அளவிற்கு மட்டுமே பயன்படுத்தப்படும்."
+                    }
+                }
+            }
+        };
+
+        // Add language switcher button
+        const languageButton = document.createElement('button');
+        languageButton.className = 'language-switcher';
+        languageButton.textContent = 'தமிழ்';
+        document.querySelector('.welcome-container').appendChild(languageButton);
+
+        // Add event listener for language switching
+        languageButton.addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'en' ? 'ta' : 'en';
+            languageButton.textContent = currentLanguage === 'en' ? 'தமிழ்' : 'English';
+            updatePageContent();
+        });
+
+        // Function to update all page content
+        function updatePageContent() {
+            const t = translations[currentLanguage];
+            
+            // Update static content
+            document.querySelector('.subtitle').textContent = t.subtitle;
+            document.querySelector('.title').textContent = t.title;
+            document.querySelector('.description').textContent = t.description;
+            document.querySelector('.search-input').placeholder = t.searchPlaceholder;
+            
+            // Update table headers
+            const headers = document.querySelectorAll('th');
+            headers[0].textContent = t.tableHeaders.publisherName;
+            headers[1].textContent = t.tableHeaders.stallNumber;
+            headers[2].textContent = t.tableHeaders.rowLocation;
+            headers[3].textContent = t.tableHeaders.side;
+
+            // Update disclaimer
+            document.querySelector('.disclaimer-title').textContent = t.disclaimer.title;
+            
+            const disclaimerTitles = document.querySelectorAll('.disclaimer-list h3');
+            const disclaimerContents = document.querySelectorAll('.disclaimer-list p');
+            
+            disclaimerTitles[0].textContent = t.disclaimer.purpose.title;
+            disclaimerContents[0].textContent = t.disclaimer.purpose.content;
+            
+            disclaimerTitles[1].textContent = t.disclaimer.dataSource.title;
+            disclaimerContents[1].textContent = t.disclaimer.dataSource.content;
+            
+            disclaimerTitles[2].textContent = t.disclaimer.commitment.title;
+            disclaimerContents[2].textContent = t.disclaimer.commitment.content;
+
+            disclaimerTitles[3].textContent = t.disclaimer.webDuration.title;
+            disclaimerContents[3].textContent = t.disclaimer.webDuration.content;
+
+            // Refresh table if needed
+            if (allData.length > 0) {
+                updateTable(filterData());
+            }
+        }
         let allData = [];
         let currentPage = 1;
         const rowsPerPage = 20;
