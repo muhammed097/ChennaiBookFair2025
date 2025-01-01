@@ -16,7 +16,9 @@
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #ffd1e1 0%, #e9d5ff 100%);
-            padding: 20px;
+            padding: 20px 20px 0 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .welcome-container {
@@ -257,6 +259,39 @@
             color: #666;
         }
 
+        .footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 1rem;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+
+        .heart {
+            color: #ff4d4d;
+            display: inline-block;
+            animation: heartBeat 1.2s infinite;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
         .language-switcher {
             position: absolute;
             top: 20px;
@@ -385,11 +420,9 @@
                 <h3>Purpose of the Website:</h3>
                 <p>This website is created solely for public assistance as a directory for the book stalls at the fair. It is designed to help visitors easily navigate the event and discover participating stalls.</p>
             </li>
-            <li>
-    <h3>Data Source:</h3>
+           <h3>Data Source:</h3>
     <p>The stall information is sourced from the organizer's official website, <a href="https://bapasi.com/" target="_blank">Bapasi</a>. The data is used purely for informational purposes and does not have any commercial intent.</p>
 </li>
-
             <li>
                 <h3>Commitment to Helping Visitors:</h3>
                 <p>Our goal is to provide a convenient, user-friendly guide to enhance the experience of attendees at the book fair. This platform is built with the sole intention of supporting the public by making stall details easily accessible.</p>
@@ -400,6 +433,10 @@
             </li>
         </ol>
     </div>
+
+    <footer class="footer">
+        Made with <span class="heart">❤</span> by Muhammed
+    </footer>
 
     <script>
         let currentLanguage = 'en';
