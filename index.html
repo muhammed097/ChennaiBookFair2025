@@ -125,9 +125,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
             margin-top: 20px;
             padding: 10px;
+            flex-wrap: wrap;
         }
 
         .page-input {
@@ -219,6 +220,34 @@
             th, td {
                 padding: 8px 10px;
                 font-size: 13px;
+            }
+
+            .pagination {
+                gap: 4px;
+                padding: 10px 5px;
+            }
+            
+            .pagination button {
+                padding: 6px 10px;
+                font-size: 13px;
+            }
+            
+            .pagination span {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+                order: -1;
+            }
+            
+            .goto-container {
+                width: 100%;
+                justify-content: center;
+                margin-top: 5px;
+            }
+            
+            .page-input {
+                width: 50px;
+                padding: 4px 8px;
             }
         }
 
@@ -330,7 +359,6 @@
                 });
             }
             
-            // Clear and update in a single operation
             requestAnimationFrame(() => {
                 tableBody.innerHTML = '';
                 tableBody.appendChild(fragment);
